@@ -1,5 +1,9 @@
+
+
+require "sinatra"
 require "CSV"
 require "pry"
+require "shotgun"
 
 class BankAccounts
   attr_reader :transactions, :starting_balance, :account, :balance
@@ -74,6 +78,45 @@ end
 bank.each do |account, details|
   puts details.summary
 end
+
+
+
+
+get '/accounts/:accountName' do
+  @accountName = params[:accountName].gsub "+", " "
+  @account     = bank[@accountName]
+  erb :bankinfo
+end
+
+
+set :views, File.dirname(__FILE__) + '/views'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

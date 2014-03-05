@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Account Summary</title>
+
+    <!-- Bootstrap -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+<ul></ul>
+
+
+  <body>
+  <div class="container">
+        <h1><%=@accountName%></h1>
+        <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered">
+            <tr>
+              <th>Starting Balance</th>
+              <th>Ending Balance</th>
+            </tr>
+            <tr>
+              <td>$<%=@account.starting_balance%></td>
+              <td>$<%=@account.balance%></td>
+            </tr>
+
+            </table>
+          </div>
+        </div>
+
+        <h2>Transactional Summary</h2>
+        <table class="table table-hover">
+        <tr>
+          <th>Date</th>
+          <th>Description</th>
+          <th>Amount</th>
+          <th>Transaction Type</th>
+
+          </tr>
+
+        <%@account.transactions.each do |tran|%>
+
+        <tr>
+          <td><%=tran.date%></td>
+          <td><%=tran.description%></td>
+          <td>$<%=tran.amount.abs%></td>
+          <td><%=tran.debit_or_credit?%></td>
+        </tr>
+        <tr></tr>
+        <tr></tr>
+        <tr></tr>
+      <%end%>
+
+    </table>
+  </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>
